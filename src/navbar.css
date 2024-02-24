@@ -1,0 +1,43 @@
+/* Navbar.css */
+
+.navbar {
+  background-color: #333;
+  padding: 10px;
+  display: flex; /* Align items in a row */
+  align-items: center; /* Center vertically */
+  justify-content: space-between;
+}
+
+.navbar li {
+  margin-right: 10px;
+  color: white; 
+  display: flex;
+  padding-left: 12px;
+}
+
+.navbar li:hover {
+  color: #ffcc00; 
+  cursor: pointer; 
+}
+
+.crm-logo {
+  width: 50px; /* Adjust width as needed */
+  margin-right: 20px; /* Add some spacing between logo and modules */
+}
+
+/* .navbar-nav {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+} */
+
+/* .navbar-nav li {
+  margin-right: 10px;
+  color: white; 
+  display: flex;
+} */
+
+/* .navbar-nav li:hover {
+  color: #ffcc00; 
+  cursor: pointer; 
+} */
