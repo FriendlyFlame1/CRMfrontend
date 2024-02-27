@@ -1,43 +1,119 @@
-// CreateDeal.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function CreateDeal() {
-  const [dealData, setDealData] = useState({
+const FormPage = () => {
+  const [formData, setFormData] = useState({
     dealOwner: '',
     dealName: '',
     accountName: '',
-    // Other fields...
+    type: '',
+    nextStep: '',
+    leadSource: '',
+    contactName: '',
+    amount: '',
+    closingDate: '',
+    stage: '',
+    probability: '',
+    expectedRevenue: '',
+    campaignSource: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setDealData({ ...dealData, [name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/deals', dealData);
-      alert('Deal created successfully!');
-      // Redirect or perform any other action after deal creation
+      const response = await axios.post('https://sore-puce-pronghorn-boot.cyclic.app/api/deals', formData);
+      if (response.status === 201) {
+        alert('Deal saved successfully!');
+        setFormData({
+          dealOwner: '',
+          dealName: '',
+          accountName: '',
+          type: '',
+          nextStep: '',
+          leadSource: '',
+          contactName: '',
+          amount: '',
+          closingDate: '',
+          stage: '',
+          probability: '',
+          expectedRevenue: '',
+          campaignSource: '',
+        });
+      } else {
+        alert('Failed to save deal.');
+      }
     } catch (error) {
-      console.error('Error creating deal:', error);
-      alert('Error creating deal. Please try again.');
+      console.error('Error saving deal:', error);
+      alert('Failed to save deal.');
     }
   };
 
   return (
     <div>
-      <h2>Create Deal</h2>
+      <h1>Create a New Deal</h1>
       <form onSubmit={handleSubmit}>
-        <label>Deal Owner:</label>
-        <input type="text" name="dealOwner" value={dealData.dealOwner} onChange={handleChange} required />
-        
-        <button type="submit">Submit</button>
+      
+        <label>
+          Deal Owner:
+          <input type="text" name="dealOwner" value={formData.dealOwner} onChange={handleChange} />
+        </label>
+        <label>
+          Deal Name:
+          <input type="text" name="dealName" value={formData.dealName} onChange={handleChange} />
+        </label>
+        <label>
+          Account Name:
+          <input type="text" name="accountName" value={formData.accountName} onChange={handleChange} />
+        </label>
+        <label>
+          Type:
+          <input type="text" name="type" value={formData.type} onChange={handleChange} />
+        </label>
+        <label>
+          Next Step:
+          <input type="text" name="nextStep" value={formData.nextStep} onChange={handleChange} />
+        </label>
+        <label>
+          Lead Source:
+          <input type="text" name="leadSource" value={formData.leadSource} onChange={handleChange} />
+        </label>
+        <label>
+          Contact Name:
+          <input type="text" name="contactName" value={formData.contactName} onChange={handleChange} />
+        </label>
+        <label>
+          Amount:
+          <input type="text" name="amount" value={formData.amount} onChange={handleChange} />
+        </label>
+        <label>
+          Closing Date:
+          <input type="text" name="closingDate" value={formData.closingDate} onChange={handleChange} />
+        </label>
+        <label>
+          Stage:
+          <input type="text" name="stage" value={formData.stage} onChange={handleChange} />
+        </label>
+        <label>
+          Probability:
+          <input type="text" name="probability" value={formData.probability} onChange={handleChange} />
+        </label>
+        <label>
+          Expected Revenue:
+          <input type="text" name="expectedRevenue" value={formData.expectedRevenue} onChange={handleChange} />
+        </label>
+        <label>
+          Campagin Source:
+          <input type="text" name="campaginSource" value={formData.campaginSource} onChange={handleChange} />
+        </label>
+        <button type="submit">Save Deal</button>
       </form>
     </div>
   );
-}
+};
 
-export default CreateDeal;
+export default FormPage;

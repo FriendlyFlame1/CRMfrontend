@@ -10,7 +10,7 @@ const DataTable = () => {
     // Fetch data from MongoDB Atlas or any other data source
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://puce-rattlesnake-suit.cyclic.app/api/data'); 
+        const response = await axios.get('https://sore-puce-pronghorn-boot.cyclic.app/api/deals'); 
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -21,19 +21,26 @@ const DataTable = () => {
   }, []);
 
   const columns = [
-    { dataField: 'id', text: 'ID' },
-    { dataField: 'name', text: 'Name' },
-    { dataField: 'age', text: 'Age' },
-    { dataField: 'gender', text: 'Gender' },
-    { dataField: 'city', text: 'City' },
-    { dataField: 'country', text: 'Country' },
-    { dataField: 'occupation', text: 'Occupation' },
+    { dataField: 'dealOwner', text: 'Deal Owner' },
+    { dataField: 'dealName', text: 'Deal Name' },
+    { dataField: 'accountName', text: 'Account Name' },
+   // { dataField: 'type', text: 'Type' },
+    //{ dataField: 'next step', text: 'Next Step' },
+   // { dataField: 'lead source', text: 'Lead Source' },
+    { dataField: 'contactName', text: 'Contact Name' },
+    { dataField: 'amount', text: 'Amount' },
+    { dataField: 'closingDate', text: 'Closing Date' },
+    { dataField: 'stage', text: 'Stage' },
+   // { dataField: 'probability%', text: 'Probability%' },
+    //{ dataField: 'expected revenue', text: 'Expected Revenue' },
+   // { dataField: 'campagin source', text: 'Campagin Source' },
+
   ];
 
   return (
     <div>
       <BootstrapTable
-        keyField='id'
+        keyField='dealName'
         data={data}
         columns={columns}
         pagination={paginationFactory()}
